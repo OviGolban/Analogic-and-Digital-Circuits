@@ -1,0 +1,72 @@
+[aimspice]
+[description]
+798
+tls
+.subckt NU_TTL a vcc 0 out 
+r1 vcc 1 4k
+r2 vcc 3 1.6k
+r3 4 0 1k
+r4 vcc 5 130
+q1a 2 1 a tranzistor
+q2 3 2 4 tranzistor
+q3 5 3 6 tranzistor
+q4 out 4 0 tranzistor
+
+d1 0 a dioda
+d3 6 out dioda
+.model tranzistor npn tr=5e-9 tf=8e-9
+.model dioda d
+.ends
+
+.subckt NU_TLS a i vcc 0 out
+r1 vcc 1 4k
+r2 vcc 3 1.6k
+r3 4 0 1k
+r4 vcc 5 130
+d 3 j dioda
+d1 0 a dioda
+d3 6 out dioda
+.model dioda d tt=5e-9
+
+q1a 2 1 a tranzistor
+q1j 2 1 j tranzistor
+q2 3 2 4 tranzistor
+q3 5 3 6 tranzistor
+q4 out 4 0 tranzistor
+.model tranzistor npn tr=5e-9 tf=8e-9
+X1_NU_TTL i vcc 0 j NU_TTL
+.ends
+
+X2_TLS a i vcc 0 out NU_TLS
+r1c vcc out 1e6
+r2c out 0 1e6
+cs1 out 0 15p
+Vcc vcc 0 5
+
+va a 0 dc 0 pulse(0.2 3.4 0 1e-9  1e-9 1e-3 2e-3)
+vi i 0 dc 0 pulse(0.3 3.5 0 1e-9  1e-9 1e-3 4e-3)
+[options]
+1
+Itl4 1000
+[dc]
+1
+va
+-1
+5
+0.01
+[tran]
+1e-10
+5e-3
+X
+X
+0
+[ana]
+4 1
+0
+1 1
+1 1 0 4
+3
+v(a)
+v(out)
+v(i)
+[end]
