@@ -1,0 +1,79 @@
+[aimspice]
+[description]
+917
+TTL cu colector deschis
+.subckt SI_NU_TTL a b vcc 0 out
+r1 vcc 1 4k
+r2 vcc 3 1.6k
+r3 4 0 1k
+r4 vcc 5 130
+d1 0 a dioda
+d2 0 b dioda
+d3 6 out dioda
+.model dioda d 
+q1a 2 1 a tranzistor
+q1b 2 1 b tranzistor
+q2 3 2 4 tranzistor
+q3 5 3 6 tranzistor
+q4 out 4 0 tranzistor
+.model tranzistor npn tr=5e-9 tf=8e-9
+.ends
+
+
+
+.subckt TTL_OC a b vcc 0 out
+r1 vcc 1 1k
+r2 vcc 3 1.6k
+r3 4 0 1k
+d1 0 a dioda
+d2 0 b dioda
+.model dioda d
+q1a 2 1 a tranzistor
+q1b 2 1 b tranzistor
+q2 3 2 4 tranzistor 
+q4 out 4 0 tranzistor 
+.model tranzistor npn tr=5e-9 tf=9e-9
+.ends
+
+X3_SI_NU_TTL f f vcc 0 vo1  SI_NU_TTL
+X4_SI_NU_TTL f f vcc 0 vo2  SI_NU_TTL
+
+X1_TTL_OC vi1 vi1 vcc 0 f TTL_OC
+X2_TTL_OC vi2 vi2 vcc 0 f TTL_OC
+
+rc vcc f 0.5k
+c1 f 0 15p
+c2 vo1 0 15p
+c3 vo2 0 15p
+Vcc vcc 0 5V
+
+Vi1 vi1 0 dc 0 pulse(0.1 4.8 0 1e-9 1e-9 1e-7 2e-7)
+Vi2 vi2 0 dc 0 pulse(0.2 4.9 0 1e-9 1e-9 1e-7 2e-7)
+
+
+
+
+[dc]
+1
+Vi1
+0
+5
+0.1
+[tran]
+1e-9
+5e-7
+X
+X
+0
+[ana]
+4 1
+0
+1 1
+1 1 0 5
+5
+v(f)
+v(vo1)
+v(vo2)
+v(vi1)
+v(vi2)
+[end]
