@@ -1,0 +1,12 @@
+[aimspice]
+[description]
+239
+nmos inversor static
+m1 out in 0 0 nmos_m1 l=1u w =1u
+m2 vdd vgg out out nmos_m2 l=25u w=1u
+.model nmos_m1 nmos vto = 1.5
+.model nmos_m2 nmos vto = 2.5
+vdd vdd 0 dc 5
+vin in 0 dc 0 Pulse(0 5 0 1e-10 1e-10 1e-9 2e-9)
+vgg vgg 0 dc 7.5
+[end]

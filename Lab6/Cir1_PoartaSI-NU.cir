@@ -1,0 +1,81 @@
+[aimspice]
+[description]
+316
+poarta si-nu statica
+m1 out in 0 0 nmos_m1 l=1u w =1u
+m2 vo b out out nmos_m2 l=1u w=1u
+m3 vdd vgg vo vo nmos_m3 l=25u w=1u
+.model nmos_m1 nmos vto = 1.5
+.model nmos_m2 nmos vto = 2.5
+.model nmos_m3 nmos vto = 3.5
+vdd vdd 0 dc 5
+vin in 0 dc 0 Pulse(0 5 0 1e-10 1e-10 1e-9 2e-9)
+va b 0 DC 5
+vgg vgg 0 dc 7.5
+[tran]
+1e-11
+5e-9
+X
+X
+0
+[ana]
+4 9
+0
+1 1
+1 1 -1 6
+3
+v(out)
+v(in)
+v(b)
+0
+1 1
+1 1 0 5
+3
+v(out)
+v(in)
+v(vo)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+3
+v(out)
+v(in)
+v(vo)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 -1 6
+3
+v(out)
+v(in)
+v(b)
+[end]
