@@ -1,0 +1,48 @@
+[aimspice]
+[description]
+290
+stabilizator cu reactie fara amplificator de eroare
+.Model Dioda D
+.model zener d bv = 5.6
+.model tranzistor npn tr=1e-9 tf=1e-9 
+D1 1 2 Dioda
+D2 0 1 Dioda
+D3 0 3 Dioda
+D4 3 2 Dioda
+RL out 0 100
+R1 2 4 220
+c1 2 0 1m
+dz 0 4 zener
+q1 2 4 out tranzistor
+
+Vin 1 3 sin(0 10 1k 0 0)
+[tran]
+1e-9
+6e-3
+X
+X
+0
+[ana]
+4 3
+0
+1 1
+1 1 -2 10
+5
+v(1)
+v(2)
+v(3)
+v(out)
+v(4)
+0
+1 1
+1 1 -80 20
+2
+v(out)
+i(vin)
+0
+1 1
+1 1 -2 10
+2
+v(1)
+v(out)
+[end]
