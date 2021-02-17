@@ -1,0 +1,48 @@
+[aimspice]
+[description]
+380
+circuite logice ttl
+.model tranzistor npn tr = 5e-9 tf =8e-9
+.Model Dioda D
+D1 0 A Dioda
+D2 0 B Dioda
+D 3 4 Dioda
+q11 in b1 A tranzistor
+q12 in b1 B tranzistor
+q2 1 b1 2 tranzistor
+q3 vcc 1 3 tranzistor
+q4 3 2 0 tranzistor
+r1 vcc in 4k
+r2 vcc 1 1.66k
+r3 2 0 1k
+r4 vcc 1 0.13k
+
+
+vin in 0 dc 0 pulse (0 5 0 1e-9 1e-9 1e-7 2e-7)
+
+!0 dc 0 == punem ca sa vedem pe dc
+[dc]
+1
+vin
+0
+5
+5
+[tran]
+1e-9
+5e-7
+X
+X
+0
+[ana]
+4 2
+0
+1 1
+1 1 0 5
+1
+v(out)
+0
+1 1
+1 1 -2 6
+1
+v(out)
+[end]
