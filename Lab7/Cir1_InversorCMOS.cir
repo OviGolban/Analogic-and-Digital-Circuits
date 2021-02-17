@@ -1,0 +1,33 @@
+[aimspice]
+[description]
+241
+inversor cmos
+mn out in vs vs nmos_mn l=1u w=1u
+mp out in vdd vdd pmos_mp l=1u w=1u
+c1 out 0 5p
+.model nmos_mn nmos vto = 1.5
+.model pmos_mp pmos vto = -1.5
+vdd vdd 0 dc 5
+vin in 0 dc 0 Pulse(0 5 0 1e-10 1e-10 1e-6 2e-6)
+vs vs 0 dc 0
+[dc]
+1
+vin
+0
+5
+0.1
+[tran]
+1e-11
+3e-6
+X
+X
+0
+[ana]
+4 1
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+[end]
