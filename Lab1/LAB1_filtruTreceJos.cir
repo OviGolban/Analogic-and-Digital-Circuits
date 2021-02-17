@@ -1,0 +1,61 @@
+[aimspice]
+[description]
+159
+Filtru trece jos
+c1 out 0 470n !50n
+r1 in out 10k
+!vin in 0 dc 5 pulse(0 5 0 0 0 1e-3 2e-3)
+vin in 0 dc 5 sin(0 5 1k 0 0)
+!vin in 0 dc 5 sin(0 5 20 0 0)
+
+[tran]
+1e-9
+6e-3
+X
+X
+0
+[ana]
+4 7
+0
+1 1
+1 1 -6 6
+2
+v(out)
+v(in)
+0
+1 1
+1 1 -6 6
+2
+v(out)
+v(in)
+0
+1 1
+1 1 -1 6
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+2
+v(in)
+v(out)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+0
+1 1
+1 1 0 5
+2
+v(out)
+v(in)
+[end]
