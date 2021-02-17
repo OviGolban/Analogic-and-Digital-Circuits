@@ -1,0 +1,46 @@
+[aimspice]
+[description]
+295
+inversor cu tranzistor bipolar
+.model tranzistor npn tr = 5e-9 tf =8e-9
+
+rc ec out 1k
+rb 2 eb 7k
+r1 in 2 1k
+r2 out 0 1k
+c1 in 2 50p
+c2 out 0 15p
+q1 out 2 0 tranzistor
+veb eb 0 dc -1
+vec ec 0 dc 5
+
+vin in 0 dc 0 pulse (0 5 0 1e-9 1e-9 1e-7 2e-7)
+
+!0 dc 0 == punem ca sa vedem pe dc
+[dc]
+1
+vin
+0
+5
+5
+[tran]
+1e-9
+5e-7
+X
+X
+0
+[ana]
+4 2
+0
+1 1
+1 1 -2 6
+2
+v(out)
+v(in)
+0
+1 1
+1 1 -1 5
+2
+v(out)
+v(in)
+[end]
