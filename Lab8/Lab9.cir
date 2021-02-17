@@ -1,0 +1,33 @@
+[aimspice]
+[description]
+377
+poarta de trasmisie cmos
+mn in a vss out nmos_mn l=1u w=1u
+mp in vna vdd out pmos_mp l=1u w=1u
+.model nmos_mn nmos vto = 1.5
+.model pmos_mp pmos vto = -1.5
+vdd vdd 0 dc 5 
+vss vss 0 dc 0
+vin in 0 dc 0 Pulse(0 5 0 1e-10 1e-10 1e-6 2e-6)
+va a 0 dc Pulse(0 5 0 1e-10 1e-10 1e-6 2e-6)
+vna vna 0 dc 0
+!vb b 0 dc 0 Pulse(0 5 0 1e-10 1e-10 2e-6 4e-6)
+!r1 out vss 100k
+
+
+
+[tran]
+1e-11
+3e-6
+X
+X
+0
+[ana]
+4 1
+0
+1 1
+1 1 -1 6
+2
+v(in)
+v(out)
+[end]
